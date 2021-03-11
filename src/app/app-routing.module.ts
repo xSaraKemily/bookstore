@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'autores',
-    loadChildren: () => import('./autores/autores.module').then( m => m.AutoresPageModule)
+    loadChildren: () => import('./autores/autor.model').then( m => m.Autor)
   }
 ];
 

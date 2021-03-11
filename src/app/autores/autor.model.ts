@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AutoresPageRoutingModule } from './autores-routing.module';
 
 import { AutoresPage } from './autores.page';
+import { Genero } from './genero.enum';
 
 @NgModule({
   imports: [
@@ -17,4 +18,8 @@ import { AutoresPage } from './autores.page';
   ],
   declarations: [AutoresPage]
 })
-export class AutoresPageModule {}
+export class Autor {
+  nome: string;
+  dataNascimento: Date;
+  genero: Genero;
+}
