@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-button slot="start" color="light">
+      <ion-menu-button color="dark"></ion-menu-button>
+    </ion-button>
+      <ion-title>Book Store App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-searchbar></ion-searchbar> -->
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Bem-vindo ao Book Store app!</ion-card-title>
+      <ion-card-subtitle>Gerencie sua biblioteca utilizando o melhor app do mercado!</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Cadastre seus livros e autores e os tenha sempre em mãos!
+  </ion-card-content>
+  </ion-card>
+
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header [routerLink]="['/autores']">
+          <ion-card-title>
+            <ion-icon name="book" class="ion-margin-end"></ion-icon>
+            Livros
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+
+    <ion-col>
+      <ion-card>
+        <ion-card-header [routerLink]="['/autores']">
+          <ion-card-title>
+            <ion-icon name="people-circle" class="ion-margin-end"></ion-icon>
+            Autores
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
