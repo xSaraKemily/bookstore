@@ -19,6 +19,7 @@ import { Genero } from './genero.enum';
   declarations: [AutoresPage]
 })
 export class Autor {
+  id?: number;
   nome: string;
   dataNascimento: Date;
   genero: Genero;
