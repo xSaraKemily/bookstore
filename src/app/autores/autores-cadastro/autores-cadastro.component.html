@@ -9,39 +9,42 @@
 
 <ion-content>
 
-  <form [formGroup]="form" (ngSubmit)="salvar()">
-      <ion-item>
-        <ion-label  position="floating">Nome</ion-label>
-        <ion-input formControlName="nome"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Data de nascimento</ion-label>
-          <ion-datetime formControlName="dataNascimento" display-format="DD/MM/YYYY" cancel-text="Cancelar" doneText="Ok"></ion-datetime>
-      </ion-item>
-
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="floating">Nome: </ion-label>
+      <ion-input formControlName="nome"
+                  type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Data de nascimento: </ion-label>
+      <ion-datetime formControlName="dataNascimento"></ion-datetime>
+    </ion-item>
+  
       <ion-item>
         <ion-list>
-          <ion-radio-group formControlName="genero" name="genero">
-            <ion-list-header>
-              <ion-label>Gênero</ion-label>
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Masculino</ion-label>
-              <ion-radio value="M" slot="start"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Feminimo</ion-label>
-              <ion-radio value="F" slot="start"></ion-radio>
-            </ion-item>
+          <ion-radio-group name="genero" value="F" formControlName="genero">
+              <ion-list-header>
+                  <ion-label>Gênero</ion-label>
+              </ion-list-header>
+              <ion-item>
+                  <ion-label>Feminino</ion-label>
+                  <ion-radio slot="start"
+                              value="F"></ion-radio>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Masculino</ion-label>
+                  <ion-radio slot="start"value="M"></ion-radio>
+              </ion-item>
           </ion-radio-group>
-        </ion-list>
+      </ion-list>
       </ion-item>
-
+  
       <ion-fab vertical="bottom" horizontal="end">
-        <ion-fab-button color="dark" (click)="salvar()">
-          <ion-icon name="save"></ion-icon>  
+        <ion-fab-button (click)="salvar()">
+            <ion-icon name="checkmark-outline"></ion-icon>
         </ion-fab-button>
-      </ion-fab>
+    </ion-fab>
   </form>
+  
 </ion-content>

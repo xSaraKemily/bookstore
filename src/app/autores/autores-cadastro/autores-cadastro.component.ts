@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { generate } from 'rxjs';
 import { Autor } from '../autor.model';
@@ -32,14 +32,17 @@ export class AutoresCadastroComponent implements OnInit {
     }
 
     this.form = new FormGroup({
-      nome: new FormControl('')
+      nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      dataNascimento:new FormControl(null, [Validators.required]),
+      genero: new FormControl('F', [Validators.required]),
     });
   }
 
   ngOnInit() {}
 
   salvar() {
-    console.log(this.form.value)
+    console.log('Autor: ',this.autor);
+    console.log('form: ', this.form.value);
   }
 
 }

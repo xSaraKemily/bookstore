@@ -8,6 +8,7 @@ import { AutoresPageRoutingModule } from './autores-routing.module';
 
 import { AutoresPage } from './autores.page';
 import { Genero } from './genero.enum';
+import { AutoresCadastroComponent } from './autores-cadastro/autores-cadastro.component';
 
 @NgModule({
   imports: [
@@ -15,9 +16,11 @@ import { Genero } from './genero.enum';
     FormsModule,
     IonicModule,
     AutoresPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    AutoresPageRoutingModule,
   ],
-  declarations: [AutoresPage]
+  declarations: [AutoresPage, AutoresCadastroComponent]
 })
 
 // model
