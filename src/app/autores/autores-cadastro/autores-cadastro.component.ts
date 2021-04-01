@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router  } from '@angular/router';
 import { generate } from 'rxjs';
 import { Autor } from '../autor.model';
 import { AutorService } from '../autor.service';
@@ -13,17 +13,19 @@ import { Genero } from '../genero.enum';
 })
 export class AutoresCadastroComponent implements OnInit {
 
-  autor: Autor;
   form : FormGroup;
+  autorId: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private autorService: AutorService) {
+  constructor(private activatedRoute: ActivatedRoute, private autorService: AutorService, private router: Router) {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    
+    let autor;
 
     if (id) {
-      this.autor = this.autorService.getAutor(id);
+      autor = this.autorService.getAutor(id);
+      this.autorId = id;
     } else {
-      // this.autor = new Autor(null, '', null, Genero.FEMININO);
-      this.autor = {
+      autor = {
         id: null,
         nome: '',
         dataNascimento: null,
@@ -32,17 +34,22 @@ export class AutoresCadastroComponent implements OnInit {
     }
 
     this.form = new FormGroup({
-      nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      dataNascimento:new FormControl(null, [Validators.required]),
-      genero: new FormControl('F', [Validators.required]),
+      nome: new FormControl(autor.nome, [Validators.required, Validators.minLength(3)]),
+      dataNascimento:new FormControl(autor.dataNascimento, [Validators.required]),
+      genero: new FormControl(autor.genero, [Validators.required]),
     });
   }
 
   ngOnInit() {}
 
-  salvar() {
-    console.log('Autor: ',this.autor);
-    console.log('form: ', this.form.value);
+  store() {
+    const autor = {...this.form.value, id: this.autorId}
+    this.autorService.store(autor);
+    this.router.navigate(['autores']);
+  }
+
+  get nome() {
+    return this.form.get('nome');
   }
 
 }

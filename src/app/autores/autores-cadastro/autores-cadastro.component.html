@@ -12,8 +12,12 @@
   <form [formGroup]="form">
     <ion-item>
       <ion-label position="floating">Nome: </ion-label>
-      <ion-input formControlName="nome"
-                  type="text"></ion-input>
+      <ion-input formControlName="nome"type="text"></ion-input>
+
+      <ion-text color="danger" *ngIf="nome.errors">
+        <small *ngIf="nome.errors.required && (nome.errors.touched || nome.errors.dirty)">O campo <b>nome</b> é obrigatório</small>
+        <small *ngIf="nome.errors.minlength && (nome.errors.touched || nome.errors.dirty)">O número mínimo de caracteres é <b>3</b></small>
+      </ion-text>
     </ion-item>
   
     <ion-item>
@@ -41,7 +45,7 @@
       </ion-item>
   
       <ion-fab vertical="bottom" horizontal="end">
-        <ion-fab-button (click)="salvar()">
+        <ion-fab-button (click)="store()" [disabled]="!form.valid">
             <ion-icon name="checkmark-outline"></ion-icon>
         </ion-fab-button>
     </ion-fab>
