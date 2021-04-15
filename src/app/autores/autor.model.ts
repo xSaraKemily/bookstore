@@ -10,6 +10,8 @@ import { AutoresPage } from './autores.page';
 import { Genero } from './genero.enum';
 import { AutoresCadastroComponent } from './autores-cadastro/autores-cadastro.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,6 +21,7 @@ import { AutoresCadastroComponent } from './autores-cadastro/autores-cadastro.co
     ReactiveFormsModule,
     CommonModule,
     AutoresPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [AutoresPage, AutoresCadastroComponent]
 })

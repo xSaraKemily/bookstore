@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Autor } from './autor.model';
 import { Genero } from './genero.enum';
 
@@ -9,45 +11,22 @@ export class AutorService {
 
   // controller
 
+  private url = 'http://localhost:3000/autores';
   private autores: Autor[];
+                        //aqui tem q importa o servico do http pq esse arquivo é serviço
+  constructor(private httpClient: HttpClient) {}
 
-  constructor() { 
-    this.autores = [
-      {
-        id: 1,
-        nome: 'David Flanagan',
-        dataNascimento: new Date(1980, 11, 13),
-        genero: Genero.MASCULINO,
-      }, 
-      {
-        id: 2,
-        nome: 'Douglas Cockford',
-        dataNascimento: new Date(1975, 5, 17),
-        genero: Genero.MASCULINO,
-      },
-      {
-        id: 3,
-        nome: 'Martin Fowler',
-        dataNascimento: new Date(1960, 5, 17),
-        genero: Genero.MASCULINO
-      }
-    ];
-  }
-
-   public getAutores(): Autor[] {
-     return this.autores;
+   public getAutores(): Observable<Autor[]> {                                      
+     return this.httpClient.get<Autor[]>(this.url);//url json server
    }
 
-   // filter pega todos (nesse caso retorna todos menos o que tem o id dado)
-   public delete(id: number) {
-     this.autores = this.autores.filter(a => a.id !== id);
+   public delete(id: number): Observable<Object> {
+     return this.httpClient.delete(`${this.url}/${id}`)
    }
 
-   // o find retorna o primeiro q encontrar igual
-   getAutor(id: number) {
-     return this.autores.find(a => a.id === id);
+   getAutor(id: number): Observable<Autor> {
+     return this.httpClient.get<Autor>(`${this.url}/${id}`);
    }
-
    
    private update(autor: Autor) {
      this.autores.forEach((element, index) => {

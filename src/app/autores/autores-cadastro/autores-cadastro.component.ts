@@ -17,22 +17,16 @@ export class AutoresCadastroComponent implements OnInit {
   autorId: number;
 
   constructor(private activatedRoute: ActivatedRoute, private autorService: AutorService, private router: Router) {
-    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
-    
-    let autor;
-
-    if (id) {
-      autor = this.autorService.getAutor(id);
-      this.autorId = id;
-    } else {
-      autor = {
+    let autor = {
         id: null,
         nome: '',
         dataNascimento: null,
         genero: Genero.FEMININO
       }
-    }
+    this.startForm(autor);
+  }
 
+  startForm(autor: Autor) {
     this.form = new FormGroup({
       nome: new FormControl(autor.nome, [Validators.required, Validators.minLength(3)]),
       dataNascimento:new FormControl(autor.dataNascimento, [Validators.required]),
@@ -40,7 +34,16 @@ export class AutoresCadastroComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+
+    this.autorService.getAutor(id)
+    .subscribe((response) => {
+      this.startForm(response);
+    });
+
+    this.autorId = id;
+  }
 
   store() {
     const autor = {...this.form.value, id: this.autorId}

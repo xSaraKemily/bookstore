@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Autor } from './autor.model';
 import { AutorService } from './autor.service';
 @Component({
@@ -14,7 +14,7 @@ export class AutoresPage implements OnInit {
   autores: Autor[];
 
   // esta criando um atributo (um new)
-  constructor(private autorService: AutorService, private alertcontroller: AlertController) { 
+  constructor(private autorService: AutorService, private alertcontroller: AlertController, private toast: ToastController) { 
     this.list();
   }
 
@@ -22,11 +22,29 @@ export class AutoresPage implements OnInit {
   }
 
   list() {
-    this.autores = this.autorService.getAutores();
+    this.autorService.getAutores()
+    .subscribe(
+      (response) => { //success
+        this.autores = response;
+      }, 
+      (response) => {
+        console.error(response);
+      } // error
+    );
   }
   
   private remove (autor: Autor) {
-    this.autorService.delete(autor.id);
+    this.autorService.delete(autor.id).subscribe(
+      () => {},
+      (response) => {
+        this.toast.create({
+          message: 'Não foi possível excluir o autor.',
+          color: 'danger',
+          duration: 3000,
+          keyboardClose: true
+        }).then(t => t.present());
+      }
+    );
     this.list();
   }
 
