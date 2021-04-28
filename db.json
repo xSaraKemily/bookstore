@@ -1,13 +1,7 @@
 {
   "autores": [
     {
-      "nome": "Martin Fowler",
-      "dataNascimento": "1980-02-02",
-      "genero": "M",
-      "id": 5
-    },
-    {
-      "nome": "David Flanagan",
+      "nome": "aaa",
       "dataNascimento": "1980-12-01",
       "genero": "F",
       "id": 6

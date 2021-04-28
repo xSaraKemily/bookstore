@@ -65,4 +65,8 @@ export class AutoresPage implements OnInit {
       ]
     }).then(alerta => alerta.present());   
   }
+
+  ionViewWillEnter() {
+    this.list();
+  }
 }

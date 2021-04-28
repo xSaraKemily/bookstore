@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Autor } from './autor.model';
@@ -29,19 +30,14 @@ export class AutorService {
    }
    
    private update(autor: Autor) {
-     this.autores.forEach((element, index) => {
-       if (element.id === autor.id) {
-        this.autores[index] = autor;
-       }
-     })
+     return this.httpClient.put(`${this.url}/${autor.id}`, autor);
    }
 
    store(autor: Autor) {
-     if (autor.id) {
-       this.update(autor);
+     if(autor.id) {
+       return this.update(autor);
      } else {
-      autor.id = parseInt((Math.random() * 1000).toFixed(0));
-      this.autores.push(autor);
+      return this.httpClient.post(this.url, autor);
      }
    } 
 }

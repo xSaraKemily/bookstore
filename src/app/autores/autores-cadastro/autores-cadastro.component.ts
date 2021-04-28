@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router  } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { generate } from 'rxjs';
 import { Autor } from '../autor.model';
 import { AutorService } from '../autor.service';
@@ -16,7 +17,7 @@ export class AutoresCadastroComponent implements OnInit {
   form : FormGroup;
   autorId: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private autorService: AutorService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private autorService: AutorService, private router: Router, private toastController: ToastController) {
     let autor = {
         id: null,
         nome: '',
@@ -37,22 +38,23 @@ export class AutoresCadastroComponent implements OnInit {
   ngOnInit() {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
 
+    this.autorId = id;
     this.autorService.getAutor(id)
     .subscribe((response) => {
       this.startForm(response);
     });
-
-    this.autorId = id;
   }
 
   store() {
     const autor = {...this.form.value, id: this.autorId}
-    this.autorService.store(autor);
-    this.router.navigate(['autores']);
+    this.autorService.store(autor).subscribe(
+      () => this.router.navigate(['autores']),
+      (error) => console.log(error)
+    );
+    
   }
 
   get nome() {
     return this.form.get('nome');
   }
-
 }
