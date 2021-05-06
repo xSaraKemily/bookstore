@@ -36,17 +36,20 @@ export class AutoresCadastroComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.autorId = id;
-    this.autorService.getAutor(id)
-    .subscribe((response) => {
-      this.startForm(response);
-    });
+    if (id) {
+      this.autorId = parseInt(id);
+      this.autorService.getAutor(this.autorId)
+      .subscribe((response) => {
+        this.startForm(response);
+      });
+    }
   }
 
   store() {
     const autor = {...this.form.value, id: this.autorId}
+   
     this.autorService.store(autor).subscribe(
       () => this.router.navigate(['autores']),
       (error) => console.log(error)

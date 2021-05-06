@@ -33,11 +33,4 @@ export class Autor {
   nome: string;
   dataNascimento: Date;
   genero: Genero;
-
-  // constructor (id: number,nome: string, data: Date, genero: Genero) {
-  //   this.id    = 1;
-  //   this.nome   = nome; 
-  //   this.dataNascimento   = data;
-  //   this.genero = genero
-  // }
 }

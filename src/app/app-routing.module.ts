@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'livros',
-    loadChildren: () => import('./livros/livros.module').then( m => m.LivrosPageModule)
+    loadChildren: () => import('./livros/livros.module').then( m => m.Livro)
   },
   {
     path: 'autores',

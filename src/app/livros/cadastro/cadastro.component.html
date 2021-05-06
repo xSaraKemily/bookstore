@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Livros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">ISBN</ion-label>
+      <ion-input formControlName="isbn"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nº de Páginas</ion-label>
+      <ion-input formControlName="paginas"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Autor</ion-label>
+      <ion-select formControlName="autor" ok-text="Ok" cancel-text="Cancelar" name="autor">
+        <ion-select-option *ngFor="let autor of autores" [value]="autor.id">{{autor.nome}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Preço</ion-label> 
+      <ion-input formControlName="preco"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Capa</ion-label> 
+      <ion-input formControlName="capa"></ion-input>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="store()" [disabled]="!form.valid">
+          <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
