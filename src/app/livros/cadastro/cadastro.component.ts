@@ -38,7 +38,7 @@ export class CadastroComponent implements OnInit {
       this.startForm(livro);
    }
                     // validacoes
-  startForm(livro: Livro) { 
+  startForm(livro: Livro) {     
     this.form = new FormGroup({
       titulo : new FormControl(livro.titulo,  [Validators.required]),
       isbn   : new FormControl(livro.isbn,    [Validators.required]),
@@ -48,10 +48,6 @@ export class CadastroComponent implements OnInit {
       capa  : new FormControl(livro.capa,     [Validators.required]),
     });  
   }
-
-  // compareWith(o1, o2) {
-  //   return o1 && o2 ? o1.id === o2.id : o1 === o2;
-  // }
 
   ngOnInit() {
     this.autorService.getAutores().subscribe(autores => this.autores = autores);

@@ -2,10 +2,10 @@
   "livros": [
     {
       "titulo": "sara",
-      "isbn": "222",
-      "paginas": "12",
-      "autor": null,
-      "preco": "12",
+      "isbn": "11",
+      "paginas": "1111",
+      "autor": 1,
+      "preco": "555",
       "capa": "https://segredosdomundo.r7.com/wp-content/uploads/2020/05/sailor-moon-o-anime-com-garotas-heroinas-que-quebrou-paradigmas.jpg",
       "id": 1
     },
@@ -13,7 +13,7 @@
       "titulo": "sasa",
       "isbn": "saeas",
       "paginas": "111",
-      "autor": 1,
+      "autor": 2,
       "preco": "111",
       "capa": "https://images-na.ssl-images-amazon.com/images/I/51EstVXM1UL._SX331_BO1,204,203,200_.jpg",
       "id": 2
@@ -25,6 +25,12 @@
       "dataNascimento": "2021-05-03T22:03:46.053-03:00",
       "genero": "F",
       "id": 1
+    },
+    {
+      "nome": "iiww",
+      "dataNascimento": "2021-05-04T21:29:05.573-03:00",
+      "genero": "M",
+      "id": 2
     }
   ]
 }

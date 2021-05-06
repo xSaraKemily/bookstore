@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { Autor } from '../autores/autor.model';
+import { AutorService } from '../autores/autor.service';
 import { Livro } from './livros.module';
 import { LivroService } from './livros.service';
 
@@ -12,12 +14,11 @@ export class LivrosPage implements OnInit {
 
   public livros: Livro[];
 
-  constructor(private livroService: LivroService, private alertcontroller: AlertController, private toast: ToastController){
+  constructor(private livroService: LivroService, private alertcontroller: AlertController, private toast: ToastController, private autorService: AutorService){
     this.listar();
   }
 
   ngOnInit() {
-
   }
 
   ionViewWillEnter() {
